@@ -10,9 +10,16 @@ class TodoListsController < ApplicationController
   end
 
   def update
+    list_item = TodoList.find(params[:id])
+    list_item.done = params[:payload][:isDone]
+    list_item.save
+    render json: list_item
   end
 
   def destroy
+    list_item = TodoList.find(params[:id])
+    list_item.destroy
+    render json: list_item
   end
 
   private
